@@ -319,8 +319,15 @@ blockquote {
 	}
 }
 
+/* lists, nested lists */
 ul,ol {
 	margin-bottom: @p-margin;
+}
+
+/* make parent lists have space above, but not between them and children */
+li > p {
+  margin-top: 1.1em;
+  margin-bottom: 0;
 }
 
 kbd {
