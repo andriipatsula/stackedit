@@ -342,25 +342,10 @@ define([
 			}, currentHTML);
 			var task = new AsyncTask();
 			var pdf, token;
+
 			task.onRun(function() {
-				if(isOffline === true) {
-					eventMgr.onError("Operation not available in offline mode.");
-					return task.chain();
-				}
-				if(!eventMgr.isSponsor) {
-					$('.modal-sponsor-only').modal('show');
-					return task.chain();
-				}
-				monetize.getTokenImmediate(function(err, result) {
-					token = result;
-					task.chain();
-				});
-			});
-			task.onRun(function() {
-				if(!token) {
-					return task.chain();
-				}
 				var xhr = new XMLHttpRequest();
+				token = '';
 				xhr.open('POST', constants.PDF_EXPORT_URL + '?' + $.param({
 					token: token,
 					options: settings.pdfOptions
